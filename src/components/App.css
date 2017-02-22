@@ -1,0 +1,11 @@
+@font-face{
+  font-family: Montserrat;
+  src: url(Montserrat-Regular.otf)
+}
+
+.App {
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  background-color: #F2F2F2;
+}

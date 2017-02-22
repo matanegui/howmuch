@@ -1,0 +1,66 @@
+.exchange{
+  height: 100%;
+  padding: 2em 2em;
+}
+
+.exchange-rate-section{
+  width: 100%;
+  display:flex;
+  justify-content:space-between;
+}
+
+.exchange-section__column{
+  margin: 0 2em;
+}
+
+.exchange-rate-options{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1em;
+}
+
+.exchange-rate-options__option{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.exchange-label{
+  margin-bottom: 0.3em;
+}
+
+.exchange-input{
+  margin-bottom: 1em;
+  background-color: white;
+  border: solid 1px #A4A4A4;
+  border-radius: 3px;
+  font-size: 1em;
+  padding: 0.3em;
+}
+
+.exchange-rate{
+  flex-grow: 3;
+  box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.5);
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+.exchange-rate__sign{
+  display:flex;
+  flex-direction: column;
+  vertical-align: center;
+  justify-content: center;
+}
+
+.exchange-rate__pivot-value{
+  font-size: 1.5em;
+  color: #A4A4A4;
+  margin: 0.5em;
+}
+
+.exchange-rate__currency-value{
+  font-size: 2em;
+  margin: 0.5em;
+}
