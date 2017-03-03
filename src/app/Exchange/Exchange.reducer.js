@@ -9,7 +9,7 @@ export default function reducer(state=Map({}), action){
       return state.set('currency', action.currency);
     break;
     case 'SET_PIVOT':
-      return state.set('pivot', action.currency);
+      return state.set('pivot', action.pivot);
     break;
     case 'SET_AMOUNT':
       return state.set('amount', action.amount);

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './Exchange.css';
-import {setCurrency, setPivot, setAmount} from './Exchange.reducer';
+import {setCurrency, setPivot, setAmount} from './Exchange.actions';
 
 export class Exchange extends React.PureComponent{
   render(){
@@ -23,7 +23,7 @@ export class Exchange extends React.PureComponent{
 
             <div className="exchange-rate-options__option">
               <label htmlFor="pivot"  className="exchange-label">Moneda Pivot</label>
-              <select type="text" id="pivot" className="exchange-input" value={this.props.pivot}  onChange={this.props.onCurrencyChange}>
+              <select type="text" id="pivot" className="exchange-input" value={this.props.pivot}  onChange={this.props.onPivotChange}>
                 {
                   this.props.currencyOptions.map((currencyOption) => {
                     return <option key={currencyOption} value={currencyOption} > {currencyOption} </option>
@@ -63,14 +63,14 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onCurrencyChange: (currency) => {
-      dispatch(setCurrency(currency));
+    onCurrencyChange: (event) => {
+      dispatch(setCurrency(event.target.value));
     },
-    onPivotChange: (currency) => {
-      dispatch(setPivot(currency));
+    onPivotChange: (event) => {
+      dispatch(setPivot(event.target.value));
     },
-    onAmountChange: (amount) => {
-      dispatch(setAmount(amount));
+    onAmountChange: (event) => {
+      dispatch(setAmount(event.target.value));
     }
   }
 }

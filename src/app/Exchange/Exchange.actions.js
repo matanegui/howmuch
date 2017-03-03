@@ -22,3 +22,9 @@ export function setAmount(amount){
     amount : amount
   }
 }
+
+export function getExchangeValue(amount, value){
+  return {
+    type: 'GET_EXCHANGE_VALUE'
+  }
+}
