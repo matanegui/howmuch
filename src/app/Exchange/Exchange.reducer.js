@@ -3,17 +3,18 @@ import {Map} from 'immutable';
 export default function reducer(state=Map({}), action){
   switch (action.type) {
     case 'SET_EXCHANGE':
-      return state.merge(action.state);
-    break;
-    case 'SET_CURRENCY':
-      return state.set('currency', action.currency);
-    break;
-    case 'SET_PIVOT':
-      return state.set('pivot', action.pivot);
-    break;
-    case 'SET_AMOUNT':
-      return state.set('amount', action.amount);
-    break;
+      return state.merge(Map(action.state));
+      break;
+    case 'SET_EXCHANGE_FIELD':
+    console.log(action.field);
+      return state.set(action.field, action.value);
+      break;
+    case 'GET_EXCHANGE_VALUE':
+      return state.set('value',action.value);
+      break;
+    case 'RECIEVE_EXCHANGE_VALUE':
+      return state.set('value',action.value);
+      break;
     default :
       return state;
   }

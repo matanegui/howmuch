@@ -1,30 +1,64 @@
 /*
 Action creators
 */
+export function updateExchangeField(field, value){
+  return (dispatch, getState) => {
+    dispatch(setExchangeField(field,value));
+    const updatedExchange = getState().exchange;
+    dispatch(updateExchange(updatedExchange.get('currency'),updatedExchange.get('pivot'),updatedExchange.get('amount')));
+  };
+}
 
-export function setCurrency(currency){
+export function setExchangeField(field, value){
   return {
-    type: 'SET_CURRENCY',
-    currency : currency
+    type: 'SET_EXCHANGE_FIELD',
+    field,
+    value
   }
 }
 
-export function setPivot(currency){
+export function requestExchangeValue(currency, pivot, amount){
   return {
-    type: 'SET_PIVOT',
-    currency : currency
+    type: 'GET_EXCHANGE_VALUE',
+    value : {
+      isFetching : true,
+      valid : false,
+      amount : amount
+    }
   }
 }
 
-export function setAmount(amount){
+function recieveExchangeValue(valid, amount) {
   return {
-    type: 'SET_AMOUNT',
-    amount : amount
+    type: 'RECIEVE_EXCHANGE_VALUE',
+    value : {
+      isFetching : false,
+      valid : valid,
+      amount : amount
+    }
   }
 }
 
-export function getExchangeValue(amount, value){
-  return {
-    type: 'GET_EXCHANGE_VALUE'
-  }
+//Thunk exchange API request
+export function updateExchange(currency, pivot, amount){
+  return (dispatch) => {
+    //While resolving request
+    dispatch(requestExchangeValue(currency,pivot,amount));
+    //Return API call promise
+    return fetch(`http://api.fixer.io/latest?base=${pivot}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log(amount);
+        console.log(+amount*json.rates[currency]);
+        const value = +amount * json.rates[currency];
+        //Invalid value
+        if (isNaN(value)){
+          dispatch(recieveExchangeValue(false, null));
+        }
+        //Valid value
+        else{
+          dispatch(recieveExchangeValue(true, value));
+        }
+      })
+  };
 }
