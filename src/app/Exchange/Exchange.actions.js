@@ -1,6 +1,7 @@
 /*
 Action creators
 */
+
 export function updateExchangeField(field, value){
   return (dispatch, getState) => {
     dispatch(setExchangeField(field,value));
@@ -17,7 +18,7 @@ export function setExchangeField(field, value){
   }
 }
 
-export function requestExchangeValue(currency, pivot, amount){
+export function requestExchangeValue(amount){
   return {
     type: 'GET_EXCHANGE_VALUE',
     value : {
@@ -43,7 +44,7 @@ function recieveExchangeValue(valid, amount) {
 export function updateExchange(currency, pivot, amount){
   return (dispatch) => {
     //While resolving request
-    dispatch(requestExchangeValue(currency,pivot,amount));
+    dispatch(requestExchangeValue(amount));
     //Return API call promise
     return fetch(`http://api.fixer.io/latest?base=${pivot}`)
       .then(response => response.json())

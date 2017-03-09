@@ -4,10 +4,7 @@ import './Exchange.css';
 import {updateExchangeField} from './Exchange.actions';
 
 export class Exchange extends React.PureComponent{
-  //Get exchange value again when re-setting some of the props
-  onCurrencyChange(event){
-
-  }
+  //Constructor dispatching setExchange thunk
   render(){
     return (
       <div className="exchange">
@@ -45,7 +42,7 @@ export class Exchange extends React.PureComponent{
           <div className="exchange-rate exchange-section__column">
             <div className="exchange-rate__sign">
               <p className="exchange-rate__pivot-value"> {this.props.amount} {this.props.pivot} = </p>
-              <p className="exchange-rate__currency-value">  {this.props.value.amount} {this.props.currency}</p>
+              <p className="exchange-rate__currency-value">  {this.props.value.get('amount')} {this.props.currency}</p>
             </div>
           </div>
         </div>
