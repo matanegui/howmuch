@@ -1,9 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
 import './Exchange.css';
 import {updateExchangeField} from './Exchange.actions';
 
 export class Exchange extends React.PureComponent{
+  componentWillReceiveProps(nextProps){
+    //console.log(nextProps);
+  }
   //Constructor dispatching setExchange thunk
   render(){
     return (
@@ -42,7 +46,7 @@ export class Exchange extends React.PureComponent{
           <div className="exchange-rate exchange-section__column">
             <div className="exchange-rate__sign">
               <p className="exchange-rate__pivot-value"> {this.props.amount} {this.props.pivot} = </p>
-              <p className="exchange-rate__currency-value">  {this.props.value.get('amount')} {this.props.currency}</p>
+              <p className={classNames("exchange-rate__currency-value", {"exchange-rate__currency-value--refreshing" : this.props.value.get('isFetching')})}>  {this.props.value.get('amount')} {this.props.currency}</p>
             </div>
           </div>
         </div>
@@ -66,7 +70,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFieldChange: (event, field) => {
       dispatch(updateExchangeField(field, event.target.value));
-      //dispatch(updateExchange(event.target.value, props, amount));
     }
   }
 }

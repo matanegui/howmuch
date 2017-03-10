@@ -33,4 +33,16 @@ const CURRENCIES = [
     "ZAR"
 ];
 
-export default CURRENCIES;
+const INITIAL_STATE =  {
+  currencyOptions : CURRENCIES,
+  currency : 'USD',
+  pivot : 'EUR',
+  amount : 1,
+  value : {
+    isFetching : false,
+    valid : true,
+    amount : 1
+  }
+};
+
+export default INITIAL_STATE;

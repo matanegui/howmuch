@@ -1,3 +1,4 @@
+import accounting from 'accounting';
 /*
 Action creators
 */
@@ -18,13 +19,12 @@ export function setExchangeField(field, value){
   }
 }
 
-export function requestExchangeValue(amount){
+export function requestExchangeValue(){
   return {
     type: 'GET_EXCHANGE_VALUE',
     value : {
       isFetching : true,
-      valid : false,
-      amount : amount
+      valid : false
     }
   }
 }
@@ -45,21 +45,24 @@ export function updateExchange(currency, pivot, amount){
   return (dispatch) => {
     //While resolving request
     dispatch(requestExchangeValue(amount));
-    //Return API call promise
-    return fetch(`http://api.fixer.io/latest?base=${pivot}`)
-      .then(response => response.json())
-      .then(json => {
-        console.log(amount);
-        console.log(+amount*json.rates[currency]);
-        const value = +amount * json.rates[currency];
-        //Invalid value
-        if (isNaN(value)){
-          dispatch(recieveExchangeValue(false, null));
-        }
-        //Valid value
-        else{
-          dispatch(recieveExchangeValue(true, value));
-        }
-      })
+    //If currency and pivot are equal, no conversion needed
+    if (currency===pivot){
+      dispatch(recieveExchangeValue(true, amount));
+    }
+    else{
+      return fetch(`http://api.fixer.io/latest?base=${pivot}`)
+        .then(response => response.json())
+        .then(json => {
+          const valueNumber = +amount * json.rates[currency];
+          if (isNaN(valueNumber)){
+            dispatch(recieveExchangeValue(false, null));
+          }
+          //Valid value
+          else{
+            const value = accounting.formatMoney(valueNumber, '', 2);
+            dispatch(recieveExchangeValue(true, value));
+          }
+        })
+    }
   };
 }

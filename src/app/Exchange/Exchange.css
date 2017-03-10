@@ -6,6 +6,7 @@
 .exchange-rate-section{
   width: 100%;
   display:flex;
+  flex-wrap: wrap;
   justify-content:space-between;
 }
 
@@ -63,4 +64,9 @@
 .exchange-rate__currency-value{
   font-size: 2em;
   margin: 0.5em;
+  transition: color 1s;
+}
+
+.exchange-rate__currency-value--refreshing{
+  color:transparent;
 }

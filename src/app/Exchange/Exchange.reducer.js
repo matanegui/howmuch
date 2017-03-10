@@ -1,4 +1,4 @@
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 
 export default function reducer(state=Map({}), action){
   switch (action.type) {
@@ -9,7 +9,8 @@ export default function reducer(state=Map({}), action){
       return state.set(action.field, action.value);
       break;
     case 'GET_EXCHANGE_VALUE':
-      return state.set('value', Map(action.value));
+      console.log(state.mergeDeep(fromJS({value : action.value})));
+      return state.mergeDeep(fromJS({value : action.value}));
       break;
     case 'RECIEVE_EXCHANGE_VALUE':
       return state.set('value', Map(action.value));
