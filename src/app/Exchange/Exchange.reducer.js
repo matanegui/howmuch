@@ -11,6 +11,8 @@ export default function reducer(state=Map({}), action){
       return state.mergeDeep(fromJS({value : action.value}));
     case 'RECIEVE_EXCHANGE_VALUE':
       return state.set('value', Map(action.value));
+    case 'SET_HISTORY_OPTION':
+      return state.setIn(['historyOptions', action.field], action.value);
     default :
       return state;
   }

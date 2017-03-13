@@ -1,13 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateExchangeField} from './Exchange.actions';
+import {updateExchangeField, updateHistoryOption} from './Exchange.actions';
 import {ExchangeOptions} from './ExchangeOptions/ExchangeOptions';
 import {ExchangeDisplay} from './ExchangeDisplay/ExchangeDisplay';
-import {ExchangeHistory} from './ExchangeHistory/ExchangeHistory';
+import {HistoryOptions} from './HistoryOptions/HistoryOptions';
+import {ExchangeChart} from './ExchangeChart/ExchangeChart';
 import './Exchange.css';
 
 export class Exchange extends React.PureComponent{
-  //Constructor dispatching setExchange thunk
   render(){
     return (
       <div className="exchange">
@@ -37,16 +37,14 @@ export class Exchange extends React.PureComponent{
           <header className="exchange-section__header"> Cotización histórica</header>
             <div className="exchange-columns">
               <div className="exchange-columns__column exchange-columns__column--1quarter">
-                <ExchangeOptions
-                  currency={this.props.currency}
-                  pivot={this.props.pivot}
-                  amount={this.props.amount}
-                  currencyOptions={this.props.currencyOptions}
-                  onFieldChange={this.props.onFieldChange}
+                <HistoryOptions
+                  startDate={this.props.historyOptions.get('startDate')}
+                  endDate={this.props.historyOptions.get('endDate')}
+                  onFieldChange={this.props.onHistoryOptionChange}
                 />
               </div>
               <div className="exchange-columns__column exchange-columns__column--3quarter">
-                <ExchangeHistory
+                <ExchangeChart
                   historyGraphData={this.props.historyGraphData}
                 />
               </div>
@@ -74,6 +72,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onFieldChange: (event, field) => {
       dispatch(updateExchangeField(field, event.target.value));
+    },
+    onHistoryOptionChange: (event, field) => {
+      dispatch(updateHistoryOption(field, event.target.value));
     }
   }
 }

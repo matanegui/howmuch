@@ -1,8 +1,8 @@
 import React from 'react';
 import { ResponsiveContainer,LineChart, Line, XAxis, YAxis, CartesianGrid } from 'recharts';
-import './ExchangeHistory.css';
+import './ExchangeChart.css';
 
-export class ExchangeHistory extends React.PureComponent{
+export class ExchangeChart extends React.PureComponent{
   render(){
     return  <div className="graph">
       <ResponsiveContainer width="90%" height={200}>

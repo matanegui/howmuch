@@ -44,8 +44,8 @@ const INITIAL_STATE =  {
     amount : 1
   },
   historyOptions : {
-    firstDate : '2016-01-03',
-    lastDate : '2017-02-09'
+    startDate : '2016-01-03',
+    endDate : '2017-02-09'
   },
   historyGraphData : [
     {

@@ -11,9 +11,24 @@ export function updateExchangeField(field, value){
   };
 }
 
+export function updateHistoryOption(field, value){
+  return (dispatch, getState) => {
+    dispatch(setHistoryOption(field,value));
+    //Todo: update history EP call
+  };
+}
+
 export function setExchangeField(field, value){
   return {
     type: 'SET_EXCHANGE_FIELD',
+    field,
+    value
+  }
+}
+
+export function setHistoryOption(field, value){
+  return {
+    type: 'SET_HISTORY_OPTION',
     field,
     value
   }
