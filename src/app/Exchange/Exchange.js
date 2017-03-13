@@ -11,27 +11,47 @@ export class Exchange extends React.PureComponent{
   render(){
     return (
       <div className="exchange">
-        <header className="exchange-section-header"> Cotización actual </header>
-        <div className="exchange-rate-section">
-          <div className="exchange-section__column exchange-section__column--1quarter">
-            <ExchangeOptions
-              currency={this.props.currency}
-              pivot={this.props.pivot}
-              amount={this.props.amount}
-              currencyOptions={this.props.currencyOptions}
-              onFieldChange={this.props.onFieldChange}
-            />
+        <section className="exchange-section">
+          <header className="exchange-section__header"> Cotización actual </header>
+          <div className="exchange-columns">
+            <div className="exchange-columns__column exchange-columns__column--1quarter">
+              <ExchangeOptions
+                currency={this.props.currency}
+                pivot={this.props.pivot}
+                amount={this.props.amount}
+                currencyOptions={this.props.currencyOptions}
+                onFieldChange={this.props.onFieldChange}
+              />
+            </div>
+            <div className="exchange-rate exchange-columns__column exchange-columns__column--3quarter">
+              <ExchangeDisplay
+                currency={this.props.currency}
+                pivot={this.props.pivot}
+                amount={this.props.amount}
+                value={this.props.value}
+              />
+            </div>
           </div>
-          <div className="exchange-rate exchange-section__column exchange-section__column--3quarter">
-            <ExchangeDisplay
-              currency={this.props.currency}
-              pivot={this.props.pivot}
-              amount={this.props.amount}
-              value={this.props.value}
-            />
-          </div>
-        </div>
-        <ExchangeHistory />
+        </section>
+        <section className="exchange-section">
+          <header className="exchange-section__header"> Cotización histórica</header>
+            <div className="exchange-columns">
+              <div className="exchange-columns__column exchange-columns__column--1quarter">
+                <ExchangeOptions
+                  currency={this.props.currency}
+                  pivot={this.props.pivot}
+                  amount={this.props.amount}
+                  currencyOptions={this.props.currencyOptions}
+                  onFieldChange={this.props.onFieldChange}
+                />
+              </div>
+              <div className="exchange-columns__column exchange-columns__column--3quarter">
+                <ExchangeHistory
+                  historyGraphData={this.props.historyGraphData}
+                />
+              </div>
+            </div>
+        </section>
       </div>
     )
   }
@@ -45,6 +65,8 @@ function mapStateToProps(state) {
     pivot: exchange.get('pivot'),
     amount: exchange.get('amount'),
     value: exchange.get('value'),
+    historyOptions: exchange.get('historyOptions'),
+    historyGraphData: exchange.get('historyGraphData')
   };
 }
 

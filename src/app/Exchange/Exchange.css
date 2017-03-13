@@ -4,36 +4,41 @@
   font-size: 15px;
 }
 
-.exchange-rate-section{
+.exchange-section:not(:last-child){
+  padding-bottom: 1em;
+}
+
+.exchange-section__header{
+  font-size: 1.2em;
+  font-weight: 500;
+  border-bottom: solid 1px #A4A4A4;
+  color: #327C0B;
+  margin: 0;
+  padding: 0.5em 0.2em 0.3em 1.5em;
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.exchange-columns{
   width: 100%;
   display:flex;
   flex-wrap: wrap;
   justify-content:space-between;
 }
 
-.exchange-section-header{
-  font-size: 1.2em;
-  font-weight: 500;
-  border-bottom: solid 1px #A4A4A4;
-  background-color: #f4f4f4;
-  color: #327C0B;
-  margin: 0;
-  padding: 0.5em 0.2em 0.2em 1.5em;
-  margin-bottom: 1em;
-  text-align: left;
-}
-
-.exchange-section__column{
+.exchange-columns__column{
   margin: 0 2em;
   border: none;
 }
 
-.exchange-section__column--1quarter{
+.exchange-columns__column--1quarter{
   flex-grow: 1;
+  flex-basis: 25%;
 }
 
-.exchange-section__column--3quarter{
+.exchange-columns__column--3quarter{
   flex-grow: 3;
+  flex-basis: 65%;
 }
 
 .exchange-label{
