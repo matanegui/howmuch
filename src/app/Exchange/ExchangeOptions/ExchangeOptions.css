@@ -1,0 +1,12 @@
+.exchange-rate-options{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1em;
+}
+
+.exchange-rate-options__option{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}

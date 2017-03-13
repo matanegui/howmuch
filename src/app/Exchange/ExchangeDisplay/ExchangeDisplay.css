@@ -1,0 +1,22 @@
+.exchange-rate__sign{
+  display:flex;
+  flex-direction: column;
+  vertical-align: center;
+  justify-content: center;
+}
+
+.exchange-rate__pivot-value{
+  font-size: 1.5em;
+  color: #A4A4A4;
+  margin: 0.3em;
+}
+
+.exchange-rate__currency-value{
+  font-size: 2em;
+  margin: 0.3em;
+  transition: color 1s;
+}
+
+.exchange-rate__currency-value--refreshing{
+  color:transparent;
+}
