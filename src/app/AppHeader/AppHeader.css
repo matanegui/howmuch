@@ -1,9 +1,9 @@
 .app-name{
     font-weight: normal;
-    font-size: 3.5em;
+    font-size: 2em;
+    font-weight: 200;
     margin: 0px;
     padding: 0.2em;
-    background-color: #534741;
-    color: #a6cc70;
-    box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.5);
+    background-color: #050E01;
+    color: white;
 }

@@ -5,13 +5,11 @@ import './Exchange.css';
 import {updateExchangeField} from './Exchange.actions';
 
 export class Exchange extends React.PureComponent{
-  componentWillReceiveProps(nextProps){
-    //console.log(nextProps);
-  }
   //Constructor dispatching setExchange thunk
   render(){
     return (
       <div className="exchange">
+        <header className="exchange-section-header"> Cotización actual </header>
         <div className="exchange-rate-section">
           <div className="exchange-rate-options exchange-section__column">
 
