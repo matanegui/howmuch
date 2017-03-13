@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {updateExchangeField} from './Exchange.actions';
 import {ExchangeOptions} from './ExchangeOptions/ExchangeOptions';
 import {ExchangeDisplay} from './ExchangeDisplay/ExchangeDisplay';
+import {ExchangeHistory} from './ExchangeHistory/ExchangeHistory';
 import './Exchange.css';
 
 export class Exchange extends React.PureComponent{
@@ -14,22 +15,23 @@ export class Exchange extends React.PureComponent{
         <div className="exchange-rate-section">
           <div className="exchange-section__column exchange-section__column--1quarter">
             <ExchangeOptions
-              currency = {this.props.currency}
-              pivot = {this.props.pivot}
-              amount = {this.props.amount}
-              currencyOptions = {this.props.currencyOptions}
-              onFieldChange = {this.props.onFieldChange}
+              currency={this.props.currency}
+              pivot={this.props.pivot}
+              amount={this.props.amount}
+              currencyOptions={this.props.currencyOptions}
+              onFieldChange={this.props.onFieldChange}
             />
           </div>
           <div className="exchange-rate exchange-section__column exchange-section__column--3quarter">
             <ExchangeDisplay
-              currency = {this.props.currency}
-              pivot = {this.props.pivot}
-              amount = {this.props.amount}
-              value = {this.props.value}
+              currency={this.props.currency}
+              pivot={this.props.pivot}
+              amount={this.props.amount}
+              value={this.props.value}
             />
           </div>
         </div>
+        <ExchangeHistory />
       </div>
     )
   }
