@@ -7,7 +7,6 @@ export default function reducer(state=Map({}), action){
     case 'SET_EXCHANGE_FIELD':
       return state.set(action.field, action.value);
     case 'GET_EXCHANGE_VALUE':
-      console.log(state.mergeDeep(fromJS({value : action.value})));
       return state.mergeDeep(fromJS({value : action.value}));
     case 'RECIEVE_EXCHANGE_VALUE':
       return state.set('value', Map(action.value));

@@ -51,7 +51,6 @@ export function updateHistoryChart(startDate, endDate){
           value : exchangeResponse.rates[currency]
         }
       });
-      console.log(historyGraphData);
       dispatch(setHistoryGraphData(fromJS(historyGraphData)));
     })
   };
