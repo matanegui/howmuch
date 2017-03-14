@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {updateExchangeField, updateHistoryOption} from './Exchange.actions';
+import {updateExchangeField, updateHistoryOption, updateHistoryChart} from './Exchange.actions';
 import {ExchangeOptions} from './ExchangeOptions/ExchangeOptions';
 import {ExchangeDisplay} from './ExchangeDisplay/ExchangeDisplay';
 import {HistoryOptions} from './HistoryOptions/HistoryOptions';
@@ -41,10 +41,13 @@ export class Exchange extends React.PureComponent{
                   startDate={this.props.historyOptions.get('startDate')}
                   endDate={this.props.historyOptions.get('endDate')}
                   onFieldChange={this.props.onHistoryOptionChange}
+                  onGraphDatesChange={this.props.onGraphDatesChange}
                 />
               </div>
               <div className="exchange-columns__column exchange-columns__column--3quarter">
                 <ExchangeChart
+                  currency={this.props.currency}
+                  pivot={this.props.pivot}
                   historyGraphData={this.props.historyGraphData}
                 />
               </div>
@@ -75,6 +78,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onHistoryOptionChange: (event, field) => {
       dispatch(updateHistoryOption(field, event.target.value));
+    },
+    onGraphDatesChange: (startDate, endDate) => {
+      dispatch(updateHistoryChart(startDate, endDate));
     }
   }
 }

@@ -1,4 +1,10 @@
 import accounting from 'accounting';
+import Moment from 'moment';
+import {fromJS} from 'immutable';
+import {extendMoment} from 'moment-range';
+
+// Extend 'moment' to support ranges using moment-range
+const moment = extendMoment(Moment);
 /*
 Action creators
 */
@@ -7,14 +13,47 @@ export function updateExchangeField(field, value){
   return (dispatch, getState) => {
     dispatch(setExchangeField(field,value));
     const updatedExchange = getState().exchange;
+    //Update exchange data
     dispatch(updateExchange(updatedExchange.get('currency'),updatedExchange.get('pivot'),updatedExchange.get('amount')));
+    //Update graph
+    dispatch(updateHistoryChart(updatedExchange.getIn(['historyOptions','startDate']),updatedExchange.getIn(['historyOptions','endDate'])));
   };
 }
 
 export function updateHistoryOption(field, value){
   return (dispatch, getState) => {
-    dispatch(setHistoryOption(field,value));
-    //Todo: update history EP call
+    dispatch(setHistoryOption(field, value));
+    const updatedExchange = getState().exchange;
+    //Update graph
+    dispatch(updateHistoryChart(updatedExchange.getIn(['historyOptions','startDate']),updatedExchange.getIn(['historyOptions','endDate'])));
+  };
+}
+
+export function updateHistoryChart(startDate, endDate){
+  return (dispatch, getState) => {
+    //Build date range array from startDate and endDate
+    const range = moment.range(moment(startDate, 'YYYY-MM-DD'), moment(endDate, 'YYYY-MM-DD'));
+    const rangeDays = Array.from(range.by('day'));
+    //Get currency and pivot data for the API Query
+    const currency = getState().exchange.get('currency');
+    const pivot = getState().exchange.get('pivot');
+    //Query the exchange API for each day
+    const exchangePromises = rangeDays.map(day => {
+      return fetch(`http://api.fixer.io/${day.format('YYYY-MM-DD')}?symbols=${pivot},${currency}`);
+    });
+    Promise.all(exchangePromises)
+    .then(exchangeResponsesRaw => Promise.all(exchangeResponsesRaw.map(response => response.json())))
+    .then(exchangeResponses => {
+      //Build exchangeHistory graph input from responses
+      const historyGraphData = exchangeResponses.map(exchangeResponse => {
+        return {
+          date : exchangeResponse.date,
+          value : exchangeResponse.rates[currency]
+        }
+      });
+      console.log(historyGraphData);
+      dispatch(setHistoryGraphData(fromJS(historyGraphData)));
+    })
   };
 }
 
@@ -31,6 +70,13 @@ export function setHistoryOption(field, value){
     type: 'SET_HISTORY_OPTION',
     field,
     value
+  }
+}
+
+export function setHistoryGraphData(historyGraphData){
+  return {
+    type: 'SET_HISTORY_GRAPH_DATA',
+    historyGraphData
   }
 }
 

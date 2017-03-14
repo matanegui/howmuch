@@ -13,6 +13,8 @@ export default function reducer(state=Map({}), action){
       return state.set('value', Map(action.value));
     case 'SET_HISTORY_OPTION':
       return state.setIn(['historyOptions', action.field], action.value);
+      case 'SET_HISTORY_GRAPH_DATA':
+        return state.set('historyGraphData', action.historyGraphData);
     default :
       return state;
   }

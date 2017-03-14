@@ -54,6 +54,31 @@
   padding: 0.3em;
 }
 
+.exchange-button{
+  margin-top: 1em;
+  background-color: white;
+  border: solid 1px #327C0B;
+  border-radius: 3px;
+  font-size: 1em;
+  font-weight: 900;
+  padding: 0.5em;
+  color: #327C0B;
+  transition: color 0.2s, background-color 0.2s;
+}
+
+.exchange-button:hover{
+  background-color: #327C0B;
+  color: white;
+  cursor:pointer;
+}
+
+.exchange-button:disabled{
+  background-color: white;
+  color: #A4A4A4;
+  border-color: #A4A4A4;
+  cursor: default;
+}
+
 .exchange-rate{
   border: solid 1px #A4A4A4;
   border-radius: 3px;

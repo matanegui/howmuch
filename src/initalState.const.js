@@ -33,7 +33,7 @@ const CURRENCIES = [
     "ZAR"
 ];
 
-const INITIAL_STATE =  {
+const INITIAL_EXCHANGE_STATE =  {
   currencyOptions : CURRENCIES,
   currency : 'USD',
   pivot : 'EUR',
@@ -44,8 +44,8 @@ const INITIAL_STATE =  {
     amount : 1
   },
   historyOptions : {
-    startDate : '2016-01-03',
-    endDate : '2017-02-09'
+    startDate : '2017-02-09',
+    endDate : '2017-02-22'
   },
   historyGraphData : [
     {
@@ -67,4 +67,4 @@ const INITIAL_STATE =  {
   ]
 };
 
-export default INITIAL_STATE;
+export default INITIAL_EXCHANGE_STATE;

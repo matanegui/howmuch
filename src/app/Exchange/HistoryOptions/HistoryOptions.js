@@ -1,5 +1,6 @@
 import React from 'react';
 import './HistoryOptions.css';
+import moment from 'moment';
 
 export class HistoryOptions extends React.PureComponent{
   render(){
@@ -11,7 +12,11 @@ export class HistoryOptions extends React.PureComponent{
 
       <div className="exchange-rate-options__option">
         <label htmlFor="endDate"  className="exchange-label">Fecha Fin</label>
-        <input type="date" id="endDate" className="exchange-input" value={this.props.endDate} onChange={(event) => this.props.onFieldChange(event, 'endDate')} />
+        <input type="date" id="endDate" className="exchange-input" value={this.props.endDate} onChange={(event) => this.props.onFieldChange(event, 'endDate')}  min={this.props.startDate}/>
+      </div>
+
+      <div className="exchange-rate-options__option">
+        <button className="exchange-button" disabled={!moment(this.props.startDate).isValid() || !moment(this.props.endDate).isValid()} onClick={(event) => this.props.onGraphDatesChange(this.props.startDate, this.props.endDate)}> Actualizar gráfico </button>
       </div>
 
     </div>
