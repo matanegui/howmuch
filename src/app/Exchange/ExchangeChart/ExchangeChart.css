@@ -1,0 +1,10 @@
+.chart-container{
+  height: 100%;
+}
+
+.chart-container__message-container{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

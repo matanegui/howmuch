@@ -10,3 +10,8 @@
   flex-direction: column;
   text-align: left;
 }
+
+.chart-container__invalid-data-message{
+  font-weight: 500;
+  color: #8C0822;
+}

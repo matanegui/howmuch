@@ -47,24 +47,27 @@ const INITIAL_EXCHANGE_STATE =  {
     startDate : '2017-02-09',
     endDate : '2017-02-22'
   },
-  historyGraphData : [
-    {
-        date: "2016-01-29",
-        value: 1.29
-    }, {
-        date: "2016-01-30",
-        value: 1.34
-    }, {
-        date: "2016-01-31",
-        value: 1.27
-    }, {
-        date: "2016-02-01",
-        value: 1.26
-    }, {
-        date: "2016-02-02",
-        value: 1.18
-    }
-  ]
+  historyGraph : {
+    data : [
+      {
+          date: "2016-01-29",
+          value: 1.29
+      }, {
+          date: "2016-01-30",
+          value: 1.34
+      }, {
+          date: "2016-01-31",
+          value: 1.27
+      }, {
+          date: "2016-02-01",
+          value: 1.26
+      }, {
+          date: "2016-02-02",
+          value: 1.18
+      }
+    ],
+    isFetching : false
+  }
 };
 
 export default INITIAL_EXCHANGE_STATE;
